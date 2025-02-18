@@ -56,10 +56,10 @@ function lanciaDado() {
         setTimeout(() => {
             const probabilitàLancioNullo = Math.random();
             if (probabilitàLancioNullo < 0.2) {
-                console.log("Nel lancio, il dado è caduto dal tavolo, riprova");
+                reject("Nel lancio, il dado è caduto dal tavolo, riprova");
             } else {
                 const numero = Math.floor((Math.random() * 6) + 1)
-                console.log(`E' uscito il numero ${numero}`)
+                resolve(`E' uscito il numero ${numero}`)
             }
         }, 3000)
     })
