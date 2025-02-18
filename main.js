@@ -51,6 +51,26 @@ getPost(3)
 
 
 /* Snack 2
-Crea la funzione lanciaDado() che restituisce una Promise che, dopo 3 secondi, genera un numero casuale tra 1 e 6. Tuttavia, nel 20% dei casi, il dado si "incastra" e la Promise va in reject.
-🎯 Bonus: HOF con closure per memorizzare l'ultimo lancio
+Crea la funzione lanciaDado() che restituisce una Promise che, dopo 3 secondi, genera un numero casuale tra 1 e 6. Tuttavia, nel 20% dei casi, il dado si "incastra" e la Promise va in reject. */
+
+function lanciaDado() {
+    return new Promise((resolve, reject) => {
+        console.log("Lancio in corso...")
+        setTimeout(() => {
+            const probabilitàLancioNullo = Math.random();
+            if (probabilitàLancioNullo < 0.2) {
+                console.log("Nel lancio, il dado è caduto dal tavolo, riprova");
+            } else {
+                const numero = Math.floor((Math.random() * 6) + 1)
+                console.log(`E' uscito il numero ${numero}`)
+            }
+        }, 3000)
+    })
+}
+
+lanciaDado()
+    .then(messaggio => console.log(messaggio))
+    .catch(error => console.error(error))
+
+/* 🎯 Bonus: HOF con closure per memorizzare l'ultimo lancio
 Modifica la funzione in creaLanciaDado(), che restituisce una closure che memorizza l'ultimo risultato. Se il numero esce due volte di fila, stampa "Incredibile!". */
