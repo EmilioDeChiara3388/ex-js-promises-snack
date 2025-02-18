@@ -33,10 +33,7 @@ function getPost(id) {
             .then(post => {
                 fetch(`https://dummyjson.com/users/${post.userId}`)
                     .then(res => res.json())
-                    .then(user => {
-                        post.user = user
-                        resolve(post);
-                    })
+                    .then(user => resolve({ ...post, user }))
                     .catch(reject)
             })
             .catch(reject)
